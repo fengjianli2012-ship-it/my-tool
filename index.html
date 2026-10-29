@@ -1,550 +1,63 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
-    <meta name="google-site-verification" content="Z3DMHjrw11NaLO4E9f4HIkOD0dLG-wF4w4pIWviyj-Q" />
+    <meta name="google-site-verification" content="Z3DMHjrw11NaL04E9f4HIkOD0dLG-wF4w4pIWviyj-Q" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SmartText Tools - 高效在线文本处理与自动化工具箱</title>
-    <meta name="description" content="免费高效的在线文本处理工具箱，提供文本去重、字数统计、大小写转换、手机号及邮箱提取等自动化功能，本地处理保障隐私安全。">
-    
-    <!-- 引入 Tailwind CSS 快速样式支持与 FontAwesome 图标 -->
+    <title>SmartText Tools - Online Text Utilities & Automation</title>
+    <meta name="description" content="Free online text utility box offering line deduplication, word count statistics, case conversion, and phone/email extraction. Safe, fast, and local client-side processing.">
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Custom Style & Theme Config -->
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-        body {
-            font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            background-color: #0f172a;
-            color: #f8fafc;
-        }
-        .glass-panel {
-            background: rgba(30, 41, 59, 0.7);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-        }
-        .ad-placeholder {
-            background: rgba(15, 23, 42, 0.6);
-            border: 2px dashed rgba(99, 102, 241, 0.4);
-            transition: all 0.3s ease;
-        }
-        .ad-placeholder:hover {
-            border-color: rgba(99, 102, 241, 0.8);
-        }
-        /* Toast 提示框动画 */
-        #toast {
-            transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55), opacity 0.3s ease;
-        }
-        /* Modal 弹窗渐变 */
-        .modal-backdrop {
-            background: rgba(15, 23, 42, 0.8);
-            backdrop-filter: blur(8px);
+        .active-tab {
+            border-bottom: 2px solid #6366f1;
+            color: #6366f1;
         }
     </style>
 </head>
-<body class="min-h-screen flex flex-col justify-between">
+<body class="bg-slate-900 text-slate-100 min-h-screen flex flex-col font-sans">
 
-    <!-- 顶部导航栏 -->
-    <header class="sticky top-0 z-40 glass-panel border-b border-slate-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+    <!-- Header / Navbar -->
+    <header class="border-b border-slate-800 bg-slate-900/80 backdrop-blur sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
             <div class="flex items-center space-x-3">
-                <div class="bg-indigo-600 p-2 rounded-xl text-white shadow-lg shadow-indigo-500/30">
-                    <i class="fa-solid font-bold fa-wand-magic-sparkles text-xl"></i>
+                <div class="bg-indigo-600 p-2 rounded-lg text-white font-bold text-xl">
+                    ✨
                 </div>
-                <div>
-                    <span class="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-cyan-400">SmartText</span>
-                    <span class="text-xs px-2 py-0.5 rounded-full bg-indigo-500/20 text-indigo-300 ml-2 border border-indigo-500/30">v1.0</span>
-                </div>
+                <span class="text-xl font-bold bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">
+                    SmartText
+                </span>
+                <span class="text-xs bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 px-2 py-0.5 rounded-full">v1.0</span>
             </div>
-            <nav class="hidden md:flex space-x-8 text-sm font-medium text-slate-300">
-                <a href="#tools" class="hover:text-indigo-400 transition-colors">核心功能</a>
-                <a href="#about" onclick="openModal('about-modal')" class="hover:text-indigo-400 transition-colors">关于本站</a>
-                <a href="#privacy" onclick="openModal('privacy-modal')" class="hover:text-indigo-400 transition-colors">隐私政策</a>
-            </nav>
-            <button onclick="scrollToTools()" class="bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2 rounded-lg text-sm font-medium transition-all shadow-md shadow-indigo-600/30">
-                开始使用
+            <button onclick="scrollToApp()" class="bg-indigo-600 hover:bg-indigo-500 text-white text-sm px-4 py-2 rounded-lg transition font-medium">
+                Get Started
             </button>
         </div>
     </header>
 
-    <!-- 主体区域 -->
-    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
-
-        <!-- AdSense 广告位 1：顶部 Banner 广告位 (728x90) -->
-        <div class="w-full flex justify-center">
-            <div class="ad-placeholder w-full max-w-[728px] h-[90px] rounded-xl flex flex-col items-center justify-center p-2 text-slate-400 text-xs">
-                <!-- 预留 AdSense 代码位：替换下方 <div> 为你的 ins 标签 -->
-                <i class="fa-solid fa-rectangle-ad text-lg text-indigo-400 mb-1"></i>
-                <span>广告展示区域 / Ad Space (Top Banner)</span>
-                <span class="text-[10px] text-slate-500">Google AdSense 审核与挂载位置</span>
-            </div>
+    <!-- Top Banner Ad Placeholder -->
+    <div class="max-w-6xl mx-auto px-4 w-full mt-4">
+        <div class="bg-slate-800/50 border border-dashed border-slate-700 rounded-xl p-4 text-center text-xs text-slate-500">
+            Ad Space (Top Banner) - Reserved for Google AdSense
         </div>
+    </div>
 
-        <!-- 标题区 -->
-        <div class="text-center max-w-3xl mx-auto space-y-3">
-            <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-                高效在线 <span class="bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-cyan-400">文本处理 & 自动化提取</span>
-            </h1>
-            <p class="text-slate-400 text-sm sm:text-base">
-                专为开发者、文案策划与数据处理人员打造。纯前端安全计算，数据无需上传服务器，保障数据隐私安全。
-            </p>
-        </div>
+    <!-- Hero Section -->
+    <section class="max-w-4xl mx-auto px-4 py-12 text-center">
+        <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight mb-4 bg-gradient-to-r from-white via-slate-200 to-slate-400 bg-clip-text text-transparent">
+            Efficient Online <span class="text-indigo-400">Text Processing</span> & Automation
+        </h1>
+        <p class="text-slate-400 text-base md:text-lg max-w-2xl mx-auto">
+            Designed for developers, copywriters, and data analysts. 100% client-side execution ensures your data never touches a server for complete privacy.
+        </p>
+    </section>
 
-        <!-- 核心工具面板区域 -->
-        <div id="tools" class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+    <!-- Main Application Box -->
+    <main id="app" class="max-w-6xl mx-auto px-4 mb-16 w-full flex-grow">
+        <div class="bg-slate-800/40 border border-slate-800 rounded-2xl p-4 md:p-6 shadow-xl backdrop-blur-sm">
             
-            <!-- 左侧：功能选择 Tab 导航 (Mobile 滚动，Desktop 垂直) -->
-            <div class="lg:col-span-1 space-y-2 flex lg:flex-col overflow-x-auto lg:overflow-visible pb-2 lg:pb-0 space-x-2 lg:space-x-0">
-                <button onclick="switchTab('tab-dedupe')" id="btn-tab-dedupe" class="tab-btn active w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium text-sm text-left transition-all bg-indigo-600/20 text-indigo-300 border border-indigo-500/30 whitespace-nowrap">
-                    <i class="fa-solid fa-filter text-indigo-400"></i>
-                    <span>文本整理与去重</span>
+            <!-- Navigation Tabs -->
+            <div class="flex border-b border-slate-700 space-x-6 mb-6 overflow-x-auto text-sm font-medium">
+                <button onclick="switchTab('clean')" id="tab-clean" class="pb-3 text-slate-400 hover:text-slate-200 transition flex items-center space-x-2 whitespace-nowrap active-tab">
+                    <span>🧹 Text Cleaning & Deduplication</span>
                 </button>
-                <button onclick="switchTab('tab-stats')" id="btn-tab-stats" class="tab-btn w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium text-sm text-left transition-all text-slate-400 hover:bg-slate-800/60 hover:text-slate-200 whitespace-nowrap">
-                    <i class="fa-solid fa-chart-simple text-slate-400"></i>
-                    <span>字数统计与分析</span>
-                </button>
-                <button onclick="switchTab('tab-case')" id="btn-tab-case" class="tab-btn w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium text-sm text-left transition-all text-slate-400 hover:bg-slate-800/60 hover:text-slate-200 whitespace-nowrap">
-                    <i class="fa-solid fa-[#]"></i>
-                    <span>格式与大小写转换</span>
-                </button>
-                <button onclick="switchTab('tab-extract')" id="btn-tab-extract" class="tab-btn w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium text-sm text-left transition-all text-slate-400 hover:bg-slate-800/60 hover:text-slate-200 whitespace-nowrap">
-                    <i class="fa-solid fa-bullseye text-slate-400"></i>
-                    <span>正则信息提取器</span>
-                </button>
-
-                <!-- AdSense 广告位 2：侧边栏/工具下方 Rect 广告位 (300x250) -->
-                <div class="hidden lg:block pt-4">
-                    <div class="ad-placeholder w-full h-[250px] rounded-xl flex flex-col items-center justify-center p-4 text-slate-400 text-xs text-center">
-                        <!-- 预留 AdSense 代码位 -->
-                        <i class="fa-solid fa-rectangle-ad text-2xl text-indigo-400 mb-2"></i>
-                        <span>广告展示区域 / Ad Space</span>
-                        <span class="text-[10px] text-slate-500 mt-1">Sidebar Rectangle (300x250)</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 右侧：工具操作工作区 -->
-            <div class="lg:col-span-3 space-y-6">
-                
-                <!-- 常用文本输入框 -->
-                <div class="glass-panel p-5 rounded-2xl space-y-4">
-                    <div class="flex justify-between items-center">
-                        <label for="main-input" class="text-sm font-semibold text-slate-200 flex items-center space-x-2">
-                            <i class="fa-solid fa-pen-to-square text-indigo-400"></i>
-                            <span>源文本输入区</span>
-                        </label>
-                        <div class="flex space-x-2">
-                            <button onclick="pasteFromClipboard()" class="text-xs bg-slate-800 hover:bg-slate-700 text-slate-300 px-3 py-1.5 rounded-lg border border-slate-700 transition-colors">
-                                <i class="fa-solid fa-paste mr-1"></i>粘贴
-                            </button>
-                            <button onclick="clearAll()" class="text-xs bg-red-500/10 hover:bg-red-500/20 text-red-400 px-3 py-1.5 rounded-lg border border-red-500/20 transition-colors">
-                                <i class="fa-solid fa-trash-can mr-1"></i>清空
-                            </button>
-                        </div>
-                    </div>
-                    <textarea id="main-input" rows="7" oninput="processCurrentTool()" placeholder="请在此处粘贴或输入需要处理的文本内容..." class="w-full bg-slate-900/80 border border-slate-700/80 rounded-xl p-4 text-slate-200 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-sm font-mono resize-y"></textarea>
-                </div>
-
-                <!-- 工具 1：文本整理与去重面板 -->
-                <div id="tab-dedupe" class="tool-panel glass-panel p-5 rounded-2xl space-y-5">
-                    <h3 class="text-lg font-bold text-white border-b border-slate-800 pb-3 flex items-center space-x-2">
-                        <i class="fa-solid fa-filter text-indigo-400"></i>
-                        <span>文本整理与去重选项</span>
-                    </h3>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                        <button onclick="actionDedupeLines()" class="p-3 bg-slate-800/80 hover:bg-indigo-600/20 border border-slate-700 hover:border-indigo-500/40 rounded-xl text-sm font-medium text-slate-200 flex items-center justify-between transition-all">
-                            <span><i class="fa-solid fa-clone mr-2 text-indigo-400"></i>去除重复行</span>
-                            <i class="fa-solid fa-chevron-right text-xs text-slate-500"></i>
-                        </button>
-                        <button onclick="actionRemoveEmptyLines()" class="p-3 bg-slate-800/80 hover:bg-indigo-600/20 border border-slate-700 hover:border-indigo-500/40 rounded-xl text-sm font-medium text-slate-200 flex items-center justify-between transition-all">
-                            <span><i class="fa-solid fa-align-center mr-2 text-indigo-400"></i>去除所有空行</span>
-                            <i class="fa-solid fa-chevron-right text-xs text-slate-500"></i>
-                        </button>
-                        <button onclick="actionTrimWhitespace()" class="p-3 bg-slate-800/80 hover:bg-indigo-600/20 border border-slate-700 hover:border-indigo-500/40 rounded-xl text-sm font-medium text-slate-200 flex items-center justify-between transition-all">
-                            <span><i class="fa-solid fa-arrows-left-right-to-line mr-2 text-indigo-400"></i>首尾空格清理</span>
-                            <i class="fa-solid fa-chevron-right text-xs text-slate-500"></i>
-                        </button>
-                        <button onclick="actionSortLines()" class="p-3 bg-slate-800/80 hover:bg-indigo-600/20 border border-slate-700 hover:border-indigo-500/40 rounded-xl text-sm font-medium text-slate-200 flex items-center justify-between transition-all">
-                            <span><i class="fa-solid fa-arrow-down-a-z mr-2 text-indigo-400"></i>首字母拼音排序</span>
-                            <i class="fa-solid fa-chevron-right text-xs text-slate-500"></i>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- 工具 2：字数与字符统计面板 -->
-                <div id="tab-stats" class="tool-panel hidden glass-panel p-5 rounded-2xl space-y-5">
-                    <h3 class="text-lg font-bold text-white border-b border-slate-800 pb-3 flex items-center space-x-2">
-                        <i class="fa-solid fa-chart-simple text-indigo-400"></i>
-                        <span>实时字数统计与分析</span>
-                    </h3>
-                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
-                        <div class="bg-slate-900/60 p-4 rounded-xl border border-slate-800 text-center">
-                            <div id="stat-total-chars" class="text-2xl font-bold text-indigo-400">0</div>
-                            <div class="text-xs text-slate-400 mt-1">总字符数</div>
-                        </div>
-                        <div class="bg-slate-900/60 p-4 rounded-xl border border-slate-800 text-center">
-                            <div id="stat-no-space-chars" class="text-2xl font-bold text-cyan-400">0</div>
-                            <div class="text-xs text-slate-400 mt-1">字符数 (不含空格)</div>
-                        </div>
-                        <div class="bg-slate-900/60 p-4 rounded-xl border border-slate-800 text-center">
-                            <div id="stat-lines" class="text-2xl font-bold text-emerald-400">0</div>
-                            <div class="text-xs text-slate-400 mt-1">行数</div>
-                        </div>
-                        <div class="bg-slate-900/60 p-4 rounded-xl border border-slate-800 text-center">
-                            <div id="stat-read-time" class="text-2xl font-bold text-amber-400">0 秒</div>
-                            <div class="text-xs text-slate-400 mt-1">预计阅读时间</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 工具 3：格式与大小写转换面板 -->
-                <div id="tab-case" class="tool-panel hidden glass-panel p-5 rounded-2xl space-y-5">
-                    <h3 class="text-lg font-bold text-white border-b border-slate-800 pb-3 flex items-center space-x-2">
-                        <i class="fa-solid fa-[#] text-indigo-400"></i>
-                        <span>格式与大小写处理</span>
-                    </h3>
-                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                        <button onclick="actionUpperCase()" class="p-3 bg-slate-800/80 hover:bg-indigo-600/20 border border-slate-700 hover:border-indigo-500/40 rounded-xl text-sm font-medium text-slate-200 transition-all">转为全部大写 (UPPERCASE)</button>
-                        <button onclick="actionLowerCase()" class="p-3 bg-slate-800/80 hover:bg-indigo-600/20 border border-slate-700 hover:border-indigo-500/40 rounded-xl text-sm font-medium text-slate-200 transition-all">转为全部小写 (lowercase)</button>
-                        <button onclick="actionCapitalize()" class="p-3 bg-slate-800/80 hover:bg-indigo-600/20 border border-slate-700 hover:border-indigo-500/40 rounded-xl text-sm font-medium text-slate-200 transition-all">英文单词首字母大写</button>
-                        <button onclick="actionCamelCase()" class="p-3 bg-slate-800/80 hover:bg-indigo-600/20 border border-slate-700 hover:border-indigo-500/40 rounded-xl text-sm font-medium text-slate-200 transition-all">转为驼峰命名 (camelCase)</button>
-                        <button onclick="actionRemoveSpaces()" class="p-3 bg-slate-800/80 hover:bg-indigo-600/20 border border-slate-700 hover:border-indigo-500/40 rounded-xl text-sm font-medium text-slate-200 transition-all">去除所有空格</button>
-                        <button onclick="actionFullToHalfWidth()" class="p-3 bg-slate-800/80 hover:bg-indigo-600/20 border border-slate-700 hover:border-indigo-500/40 rounded-xl text-sm font-medium text-slate-200 transition-all">全角转半角</button>
-                    </div>
-                </div>
-
-                <!-- 工具 4：正则提取器面板 -->
-                <div id="tab-extract" class="tool-panel hidden glass-panel p-5 rounded-2xl space-y-5">
-                    <h3 class="text-lg font-bold text-white border-b border-slate-800 pb-3 flex items-center space-x-2">
-                        <i class="fa-solid fa-bullseye text-indigo-400"></i>
-                        <span>正则专用信息提取</span>
-                    </h3>
-                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                        <button onclick="actionExtractPhones()" class="p-3 bg-slate-800/80 hover:bg-indigo-600/20 border border-slate-700 hover:border-indigo-500/40 rounded-xl text-sm font-medium text-slate-200 text-center transition-all">
-                            <i class="fa-solid fa-phone block text-lg text-indigo-400 mb-1"></i>提取手机号
-                        </button>
-                        <button onclick="actionExtractEmails()" class="p-3 bg-slate-800/80 hover:bg-indigo-600/20 border border-slate-700 hover:border-indigo-500/40 rounded-xl text-sm font-medium text-slate-200 text-center transition-all">
-                            <i class="fa-solid fa-envelope block text-lg text-indigo-400 mb-1"></i>提取电子邮箱
-                        </button>
-                        <button onclick="actionExtractURLs()" class="p-3 bg-slate-800/80 hover:bg-indigo-600/20 border border-slate-700 hover:border-indigo-500/40 rounded-xl text-sm font-medium text-slate-200 text-center transition-all">
-                            <i class="fa-solid fa-link block text-lg text-indigo-400 mb-1"></i>提取网址 URL
-                        </button>
-                        <button onclick="actionExtractNumbers()" class="p-3 bg-slate-800/80 hover:bg-indigo-600/20 border border-slate-700 hover:border-indigo-500/40 rounded-xl text-sm font-medium text-slate-200 text-center transition-all">
-                            <i class="fa-solid fa-hashtag block text-lg text-indigo-400 mb-1"></i>提取数字
-                        </button>
-                    </div>
-                </div>
-
-                <!-- 输出结果框区 -->
-                <div class="glass-panel p-5 rounded-2xl space-y-4">
-                    <div class="flex justify-between items-center">
-                        <label for="main-output" class="text-sm font-semibold text-slate-200 flex items-center space-x-2">
-                            <i class="fa-solid fa-square-check text-emerald-400"></i>
-                            <span>处理结果输出区</span>
-                        </label>
-                        <button onclick="copyToClipboard()" class="bg-indigo-600 hover:bg-indigo-500 text-white text-xs px-4 py-1.5 rounded-lg font-medium transition-all shadow-md shadow-indigo-600/30 flex items-center space-x-1">
-                            <i class="fa-solid fa-copy"></i>
-                            <span>一键复制结果</span>
-                        </button>
-                    </div>
-                    <textarea id="main-output" rows="7" readonly placeholder="处理后的结果将显示在这里..." class="w-full bg-slate-900/90 border border-slate-700/80 rounded-xl p-4 text-emerald-400 placeholder-slate-600 focus:outline-none text-sm font-mono resize-y"></textarea>
-                </div>
-
-            </div>
-        </div>
-
-        <!-- AdSense 广告位 3：底部 Banner 广告位 (728x90) -->
-        <div class="w-full flex justify-center pt-6">
-            <div class="ad-placeholder w-full max-w-[728px] h-[90px] rounded-xl flex flex-col items-center justify-center p-2 text-slate-400 text-xs">
-                <!-- 预留 AdSense 代码位 -->
-                <i class="fa-solid fa-rectangle-ad text-lg text-indigo-400 mb-1"></i>
-                <span>广告展示区域 / Ad Space (Bottom Banner)</span>
-                <span class="text-[10px] text-slate-500">Google AdSense 响应式广告位</span>
-            </div>
-        </div>
-
-    </main>
-
-    <!-- 页脚与合规链接 -->
-    <footer class="border-t border-slate-800 bg-slate-950/80 mt-12 py-8 text-xs text-slate-500">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4 text-center sm:text-left sm:flex sm:justify-between sm:items-center sm:space-y-0">
-            <div>
-                <p>© 2026 SmartText Tools. 保留所有权利。</p>
-                <p class="mt-1 text-[11px] text-slate-600">旨在通过快速、绿色的纯前端技术提升个人数据处理效率。</p>
-            </div>
-            <!-- Google AdSense 合规链接 -->
-            <div class="flex justify-center space-x-6 text-slate-400">
-                <button onclick="openModal('privacy-modal')" class="hover:text-indigo-400 transition-colors">隐私政策 (Privacy Policy)</button>
-                <button onclick="openModal('terms-modal')" class="hover:text-indigo-400 transition-colors">服务条款 (Terms)</button>
-                <button onclick="openModal('about-modal')" class="hover:text-indigo-400 transition-colors">关于我们</button>
-            </div>
-        </div>
-    </footer>
-
-    <!-- 全局 Toast 提示框 -->
-    <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 bg-slate-800 text-white border border-indigo-500/40 px-4 py-3 rounded-xl shadow-2xl flex items-center space-x-3 pointer-events-none">
-        <div class="bg-emerald-500/20 text-emerald-400 p-1 rounded-lg">
-            <i class="fa-solid fa-check text-sm"></i>
-        </div>
-        <span id="toast-message" class="text-sm font-medium">已成功复制到剪贴板！</span>
-    </div>
-
-    <!-- AdSense 必备 Modal 弹窗 1: 隐私政策 (Privacy Policy) -->
-    <div id="privacy-modal" class="fixed inset-0 z-50 hidden modal-backdrop flex items-center justify-center p-4">
-        <div class="bg-slate-900 border border-slate-800 rounded-2xl max-w-2xl w-full max-h-[80vh] flex flex-col shadow-2xl">
-            <div class="p-5 border-b border-slate-800 flex justify-between items-center">
-                <h3 class="text-lg font-bold text-white">隐私政策 (Privacy Policy)</h3>
-                <button onclick="closeModal('privacy-modal')" class="text-slate-400 hover:text-white"><i class="fa-solid fa-xmark text-xl"></i></button>
-            </div>
-            <div class="p-6 overflow-y-auto text-sm text-slate-300 space-y-4 leading-relaxed">
-                <p><strong>1. 数据处理与安全性：</strong>本站提供的所有文本处理工具（包括去重、格式转换、正则提取等）均采用纯前端 JavaScript 在您的浏览器本地完成计算。我们不会上传、保存或将您的文本数据传输至任何服务器。</p>
-                <p><strong>2. Cookie 与第三方广告：</strong>本网站使用 Google AdSense 展示广告。Google 作为第三方广告供应商，会使用 Cookie 来根据用户在此网站或互联网上其他网站的访问情况投放广告。</p>
-                <p><strong>3. 访问者隐私控制：</strong>用户可以通过访问 Google 广告和内容网络隐私政策（<a href="https://policies.google.com/technologies/ads" target="_blank" class="text-indigo-400 underline">https://policies.google.com/technologies/ads</a>）选择个性化广告设置。</p>
-            </div>
-            <div class="p-4 border-t border-slate-800 text-right">
-                <button onclick="closeModal('privacy-modal')" class="bg-indigo-600 text-white px-4 py-2 rounded-lg text-sm font-medium">我已阅读并知晓</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- AdSense Modal 弹窗 2: 服务条款 (Terms of Service) -->
-    <div id="terms-modal" class="fixed inset-0 z-50 hidden modal-backdrop flex items-center justify-center p-4">
-        <div class="bg-slate-900 border border-slate-800 rounded-2xl max-w-2xl w-full max-h-[80vh] flex flex-col shadow-2xl">
-            <div class="p-5 border-b border-slate-800 flex justify-between items-center">
-                <h3 class="text-lg font-bold text-white">服务条款 (Terms of Service)</h3>
-                <button onclick="closeModal('terms-modal')" class="text-slate-400 hover:text-white"><i class="fa-solid fa-xmark text-xl"></i></button>
-            </div>
-            <div class="p-6 overflow-y-auto text-sm text-slate-300 space-y-4 leading-relaxed">
-                <p>欢迎使用 SmartText Tools。在使用本网站前，请阅读以下条款：</p>
-                <p>1. 免费使用：本站点工具免费向广大个人及企业用户开放。</p>
-                <p>2. 免责声明：本网站工具均按“原样”提供，尽管我们极力保证工具算法的准确性，但不对因使用本站工具可能导致的任何直接或间接损失承担责任。</p>
-            </div>
-            <div class="p-4 border-t border-slate-800 text-right">
-                <button onclick="closeModal('terms-modal')" class="bg-indigo-600 text-white px-4 py-2 rounded-lg text-sm font-medium">关闭</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- AdSense Modal 弹窗 3: 关于我们 (About Us) -->
-    <div id="about-modal" class="fixed inset-0 z-50 hidden modal-backdrop flex items-center justify-center p-4">
-        <div class="bg-slate-900 border border-slate-800 rounded-2xl max-w-2xl w-full max-h-[80vh] flex flex-col shadow-2xl">
-            <div class="p-5 border-b border-slate-800 flex justify-between items-center">
-                <h3 class="text-lg font-bold text-white">关于我们 (About Us)</h3>
-                <button onclick="closeModal('about-modal')" class="text-slate-400 hover:text-white"><i class="fa-solid fa-xmark text-xl"></i></button>
-            </div>
-            <div class="p-6 overflow-y-auto text-sm text-slate-300 space-y-4 leading-relaxed">
-                <p>SmartText Tools 致力于为广大互联网工作者提供高效、安全、无损的离线化微处理工具。</p>
-                <p>无论是大批量文本清洗、信息正则提取，还是字符统计，我们始终坚持极简设计与本地极速体验。</p>
-            </div>
-            <div class="p-4 border-t border-slate-800 text-right">
-                <button onclick="closeModal('about-modal')" class="bg-indigo-600 text-white px-4 py-2 rounded-lg text-sm font-medium">关闭</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- 纯前端 JavaScript 交互逻辑 -->
-    <script>
-        // DOM 元素引用
-        const mainInput = document.getElementById('main-input');
-        const mainOutput = document.getElementById('main-output');
-        let currentTab = 'tab-dedupe';
-
-        // Tab 切换逻辑
-        function switchTab(tabId) {
-            currentTab = tabId;
-            document.querySelectorAll('.tool-panel').forEach(panel => panel.classList.add('hidden'));
-            document.getElementById(tabId).classList.remove('hidden');
-
-            document.querySelectorAll('.tab-btn').forEach(btn => {
-                btn.classList.remove('active', 'bg-indigo-600/20', 'text-indigo-300', 'border-indigo-500/30');
-                btn.classList.add('text-slate-400');
-            });
-
-            const activeBtn = document.getElementById(`btn-${tabId}`);
-            activeBtn.classList.add('active', 'bg-indigo-600/20', 'text-indigo-300', 'border-indigo-500/30');
-            activeBtn.classList.remove('text-slate-400');
-
-            processCurrentTool();
-        }
-
-        function processCurrentTool() {
-            if (currentTab === 'tab-stats') {
-                updateStats();
-            }
-        }
-
-        // --- 工具 1: 文本整理与去重逻辑 ---
-        function actionDedupeLines() {
-            const lines = mainInput.value.split('\n');
-            const uniqueLines = [...new Set(lines)];
-            mainOutput.value = uniqueLines.join('\n');
-            showToast('已完成去重，共处理 ' + lines.length + ' 行！');
-        }
-
-        function actionRemoveEmptyLines() {
-            const lines = mainInput.value.split('\n');
-            const filtered = lines.filter(line => line.trim() !== '');
-            mainOutput.value = filtered.join('\n');
-            showToast('已清理所有空行！');
-        }
-
-        function actionTrimWhitespace() {
-            const lines = mainInput.value.split('\n');
-            const trimmed = lines.map(line => line.trim());
-            mainOutput.value = trimmed.join('\n');
-            showToast('已清理各行首尾空格！');
-        }
-
-        function actionSortLines() {
-            const lines = mainInput.value.split('\n');
-            lines.sort((a, b) => a.localeCompare(b, 'zh-Hans-CN'));
-            mainOutput.value = lines.join('\n');
-            showToast('已按照拼音/字母排序！');
-        }
-
-        // --- 工具 2: 字数与字符统计逻辑 ---
-        function updateStats() {
-            const text = mainInput.value;
-            const totalChars = text.length;
-            const noSpaceChars = text.replace(/\s/g, '').length;
-            const lines = text ? text.split('\n').length : 0;
-            const readTimeMinutes = Math.ceil(noSpaceChars / 300);
-
-            document.getElementById('stat-total-chars').innerText = totalChars;
-            document.getElementById('stat-no-space-chars').innerText = noSpaceChars;
-            document.getElementById('stat-lines').innerText = lines;
-            document.getElementById('stat-read-time').innerText = readTimeMinutes + ' 分钟';
-            mainOutput.value = `[统计报告]\n- 总字符数: ${totalChars}\n- 不含空格字符数: ${noSpaceChars}\n- 总行数: ${lines}\n- 估计阅读时间: ${readTimeMinutes} 分钟`;
-        }
-
-        // --- 工具 3: 格式与大小写转换 ---
-        function actionUpperCase() {
-            mainOutput.value = mainInput.value.toUpperCase();
-            showToast('已转为大写！');
-        }
-
-        function actionLowerCase() {
-            mainOutput.value = mainInput.value.toLowerCase();
-            showToast('已转为小写！');
-        }
-
-        function actionCapitalize() {
-            mainOutput.value = mainInput.value.replace(/\b\w/g, c => c.toUpperCase());
-            showToast('英文单词首字母已大写！');
-        }
-
-        function actionCamelCase() {
-            const str = mainInput.value;
-            mainOutput.value = str.replace(/(?:^\w|[A-Z]|\b\w|\s+)/g, (match, index) => {
-                if (+match === 0) return "";
-                return index === 0 ? match.toLowerCase() : match.toUpperCase();
-            });
-            showToast('已转换为驼峰命名！');
-        }
-
-        function actionRemoveSpaces() {
-            mainOutput.value = mainInput.value.replace(/\s+/g, '');
-            showToast('已去除所有空格与换行！');
-        }
-
-        function actionFullToHalfWidth() {
-            let str = mainInput.value;
-            let result = "";
-            for (let i = 0; i < str.length; i++) {
-                let code = str.charCodeAt(i);
-                if (code >= 65281 && code <= 65374) {
-                    result += String.fromCharCode(code - 65248);
-                } else if (code === 12288) {
-                    result += String.fromCharCode(32);
-                } else {
-                    result += str.charAt(i);
-                }
-            }
-            mainOutput.value = result;
-            showToast('全角标点字符已转为半角！');
-        }
-
-        // --- 工具 4: 正则专用提取逻辑 ---
-        function actionExtractPhones() {
-            const regex = /(1[3-9]\d{9})/g;
-            const matches = mainInput.value.match(regex) || [];
-            mainOutput.value = [...new Set(matches)].join('\n');
-            showToast(`提取到 ${matches.length} 个手机号！`);
-        }
-
-        function actionExtractEmails() {
-            const regex = /[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/g;
-            const matches = mainInput.value.match(regex) || [];
-            mainOutput.value = [...new Set(matches)].join('\n');
-            showToast(`提取到 ${matches.length} 个电子邮箱！`);
-        }
-
-        function actionExtractURLs() {
-            const regex = /(https?:\/\/[^\s]+)/g;
-            const matches = mainInput.value.match(regex) || [];
-            mainOutput.value = [...new Set(matches)].join('\n');
-            showToast(`提取到 ${matches.length} 个网址 URL！`);
-        }
-
-        function actionExtractNumbers() {
-            const regex = /\d+/g;
-            const matches = mainInput.value.match(regex) || [];
-            mainOutput.value = matches.join('\n');
-            showToast(`提取到 ${matches.length} 处数字！`);
-        }
-
-        // --- 通用辅助逻辑：复制、粘贴与 Toast 提示 ---
-        function clearAll() {
-            mainInput.value = '';
-            mainOutput.value = '';
-            processCurrentTool();
-            showToast('已清空所有内容！');
-        }
-
-        async function pasteFromClipboard() {
-            try {
-                const text = await navigator.clipboard.readText();
-                mainInput.value = text;
-                processCurrentTool();
-                showToast('已粘贴剪贴板内容！');
-            } catch (err) {
-                showToast('请手动在框内按 Ctrl+V 或长按粘贴');
-            }
-        }
-
-        function copyToClipboard() {
-            if (!mainOutput.value) {
-                showToast('输出区域暂无内容可复制！');
-                return;
-            }
-            mainOutput.select();
-            document.execCommand('copy');
-            showToast('处理结果已成功复制到剪贴板！');
-        }
-
-        function showToast(message) {
-            const toast = document.getElementById('toast');
-            const toastMsg = document.getElementById('toast-message');
-            toastMsg.innerText = message;
-            toast.classList.remove('translate-y-20', 'opacity-0');
-            setTimeout(() => {
-                toast.classList.add('translate-y-20', 'opacity-0');
-            }, 2500);
-        }
-
-        function scrollToTools() {
-            document.getElementById('tools').scrollIntoView({ behavior: 'smooth' });
-        }
-
-        // Modal 操作
-        function openModal(id) {
-            document.getElementById(id).classList.remove('hidden');
-        }
-
-        function closeModal(id) {
-            document.getElementById(id).classList.add('hidden');
-        }
-    </script>
-</body>
-</html>
