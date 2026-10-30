@@ -329,7 +329,7 @@ document.getElementById(tabId).classList.remove('hidden');
 btn.classList.remove('active', 'bg-indigo-600/20', 'text-indigo-300', 'border-indigo-500/30');
 btn.classList.add('text-slate-400');
 });
-​const activeBtn = document.getElementById(btn-${tabId});
+​const activeBtn = document.getElementById('btn-' + tabId);
 activeBtn.classList.add('active', 'bg-indigo-600/20', 'text-indigo-300', 'border-indigo-500/30');
 activeBtn.classList.remove('text-slate-400');
 ​processCurrentTool();
@@ -484,3 +484,9 @@ document.getElementById('tools').scrollIntoView({ behavior: 'smooth' });
 ​function openModal(id) {
 document.getElementById(id).classList.remove('hidden');
 }
+function closeModal(id) {
+document.getElementById(id).classList.add('hidden');
+}
+</script>
+</body>
+</html>
