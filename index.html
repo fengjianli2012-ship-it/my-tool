@@ -20,6 +20,20 @@
 <meta property="og:url" content="https://fengjianli2012-ship-it.github.io/my-tool/">
 
 <meta name="robots" content="index, follow">
+<meta name="theme-color" content="#0f172a">
+<link rel="canonical" href="https://fengjianli2012-ship-it.github.io/my-tool/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%234f46e5'/%3E%3Cpath d='M18 18h28v6H24v7h19v6H24v9h22v6H18z' fill='white'/%3E%3C/svg%3E">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "SmartText Tools",
+  "url": "https://fengjianli2012-ship-it.github.io/my-tool/",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "description": "Free browser-based tools for cleaning, counting, converting, and extracting text."
+}
+</script>
 
 <script src="https://cdn.tailwindcss.com"></script>
 
@@ -165,6 +179,15 @@ Free online tools for cleaning text, analyzing characters, converting text forma
 </p>
 
 </div>
+
+<section class="max-w-4xl mx-auto text-center space-y-2" aria-labelledby="intro-heading">
+  <h2 id="intro-heading" class="text-xl font-semibold text-slate-200">Free Text Tools for Everyday Tasks</h2>
+  <p class="text-sm leading-6 text-slate-400">
+    SmartText helps you remove duplicate lines, clean whitespace, count text, change letter case,
+    and extract common items such as email addresses and URLs. Text processing runs in your browser;
+    no account is required for the basic tools.
+  </p>
+</section>
 
 <!-- Main Tools -->
 
@@ -558,13 +581,13 @@ Terms of Service
 
 <!-- About Modal -->
 
-<div id="about-modal" class="modal-backdrop fixed inset-0 z-50 hidden items-center justify-center p-4">
+<div id="about-modal" class="modal-backdrop fixed inset-0 z-50 hidden items-center justify-center p-4" role="dialog" aria-modal="true" aria-labelledby="about-modal-title">
 
 <div class="glass-panel rounded-2xl max-w-lg w-full p-6 space-y-4">
 
 <div class="flex justify-between items-center">
 
-<h2 class="text-xl font-bold">About SmartText Tools</h2>
+<h2 id="about-modal-title" class="text-xl font-bold">About SmartText Tools</h2>
 
 <button onclick="closeModal('about-modal')" class="text-slate-400 hover:text-white text-xl">
 &times;
@@ -589,13 +612,13 @@ Close
 
 <!-- Privacy Modal -->
 
-<div id="privacy-modal" class="modal-backdrop fixed inset-0 z-50 hidden items-center justify-center p-4">
+<div id="privacy-modal" class="modal-backdrop fixed inset-0 z-50 hidden items-center justify-center p-4" role="dialog" aria-modal="true" aria-labelledby="privacy-modal-title">
 
 <div class="glass-panel rounded-2xl max-w-lg w-full p-6 space-y-4 max-h-[85vh] overflow-y-auto">
 
 <div class="flex justify-between items-center">
 
-<h2 class="text-xl font-bold">Privacy Policy</h2>
+<h2 id="privacy-modal-title" class="text-xl font-bold">Privacy Policy</h2>
 
 <button onclick="closeModal('privacy-modal')" class="text-slate-400 hover:text-white text-xl">
 &times;
@@ -608,7 +631,7 @@ Close
 <p><strong>1. Text Processing</strong></p>
 
 <p>
-Text entered into the processing tools is handled locally in your browser by the website's JavaScript functions. This version does not intentionally send text input to a server.
+Text entered into the processing tools is processed locally in your browser by this page's JavaScript. The tool functions in this version do not intentionally transmit your text input to our server. However, the page loads third-party resources (such as fonts, icons, and CSS) from external providers, which may receive standard connection data such as your IP address and browser information. Their handling of that data is governed by their own privacy policies.
 </p>
 
 <p><strong>2. Personal Information</strong></p>
@@ -620,7 +643,7 @@ This website does not require users to create an account or submit personal info
 <p><strong>3. Cookies and Third-Party Services</strong></p>
 
 <p>
-External services, fonts, icons or advertising providers may collect technical information according to their own privacy policies if they are enabled.
+This page currently loads CSS, icon, and font resources from third-party providers. If advertising is added later, advertising providers may also use cookies or similar technologies and collect technical information. The visible advertisement areas in this version are placeholders, not an active advertising network integration.
 </p>
 
 <p><strong>4. Changes</strong></p>
@@ -646,13 +669,13 @@ Close
 
 <!-- Terms Modal -->
 
-<div id="terms-modal" class="modal-backdrop fixed inset-0 z-50 hidden items-center justify-center p-4">
+<div id="terms-modal" class="modal-backdrop fixed inset-0 z-50 hidden items-center justify-center p-4" role="dialog" aria-modal="true" aria-labelledby="terms-modal-title">
 
 <div class="glass-panel rounded-2xl max-w-lg w-full p-6 space-y-4 max-h-[85vh] overflow-y-auto">
 
 <div class="flex justify-between items-center">
 
-<h2 class="text-xl font-bold">Terms of Service</h2>
+<h2 id="terms-modal-title" class="text-xl font-bold">Terms of Service</h2>
 
 <button onclick="closeModal('terms-modal')" class="text-slate-400 hover:text-white text-xl">
 &times;
@@ -811,6 +834,28 @@ function scrollToTools() {
 // 4. Text Statistics
 // ==========================================
 
+function countWords(text) {
+    if (!text.trim()) return 0;
+
+    // Intl.Segmenter handles languages that do not separate words with spaces.
+    if (typeof Intl !== 'undefined' && typeof Intl.Segmenter === 'function') {
+        try {
+            const segmenter = new Intl.Segmenter(undefined, { granularity: 'word' });
+            let count = 0;
+            for (const part of segmenter.segment(text)) {
+                if (part.isWordLike) count++;
+            }
+            return count;
+        } catch (error) {
+            // Use the fallback below if segmentation is unavailable.
+        }
+    }
+
+    // Fallback: count CJK characters individually and group other letters/numbers.
+    const matches = text.match(/[\p{Script=Han}\p{Script=Hiragana}\p{Script=Katakana}\p{Script=Hangul}]|[\p{L}\p{N}]+(?:['’_-][\p{L}\p{N}]+)*/gu);
+    return matches ? matches.length : 0;
+}
+
 function updateStats() {
     const text = getInput();
 
@@ -820,9 +865,7 @@ function updateStats() {
         text.replace(/\s/g, '')
     ).length;
 
-    const words = text.trim()
-        ? text.trim().split(/\s+/).length
-        : 0;
+    const words = countWords(text);
 
     const lines = text.length === 0
         ? 0
@@ -937,9 +980,8 @@ function actionTitleCase() {
 function actionSentenceCase() {
     const result = getInput()
         .toLowerCase()
-        .replace(
-            /(^\s*[a-z]|[.!?]\s+[a-z])/g,
-            char => char.toUpperCase()
+        .replace(/(^|[.!?。！？]+\s*)([\p{L}])/gu, (match, boundary, letter) =>
+            boundary + letter.toLocaleUpperCase()
         );
 
     setOutput(result);
@@ -1047,20 +1089,26 @@ async function copyOutput() {
 
         showToast('Copied to clipboard!');
     } catch (error) {
+        // Older-browser fallback. Clipboard APIs generally require HTTPS or localhost.
         const temp = document.createElement('textarea');
-
         temp.value = text;
+        temp.setAttribute('readonly', '');
+        temp.style.position = 'fixed';
+        temp.style.opacity = '0';
         document.body.appendChild(temp);
-
         temp.select();
 
-        const success = document.execCommand('copy');
-
+        let success = false;
+        try {
+            success = document.execCommand('copy');
+        } catch (fallbackError) {
+            success = false;
+        }
         temp.remove();
 
-        showToast(
-            success ? 'Copied to clipboard!' : 'Copy failed!'
-        );
+        showToast(success
+            ? 'Copied to clipboard!'
+            : 'Copy unavailable. Select the output and copy it manually.');
     }
 }
 
@@ -1074,7 +1122,7 @@ async function pasteFromClipboard() {
 
         showToast('Text pasted successfully!');
     } catch (error) {
-        showToast('Clipboard access unavailable. Please paste manually.');
+        showToast('Paste unavailable. Use your device paste command instead.');
     }
 }
 
@@ -1109,7 +1157,8 @@ function downloadOutput() {
 
     link.remove();
 
-    URL.revokeObjectURL(url);
+    // Delay cleanup slightly for browsers that process downloads asynchronously.
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
 
     showToast('Download started!');
 }
