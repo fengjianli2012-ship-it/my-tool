@@ -1,362 +1,366 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<!-- Optimized Web Title -->
-<title>SmartText - Free Online Text Tools, Word Counter & Line Remover</title>
-
-<!-- Web Meta Description -->
-<meta name="description" content="Free online text utilities for fast text processing. Easily count words, remove duplicate lines, convert case, extract phone numbers, and format text online. 100% free and privacy-focused.">
-
-<!-- Keywords -->
-<meta name="keywords" content="text tools, online word counter, remove duplicate lines, case converter, free text processing, text formatter, character count, extract phone numbers">
-
-<!-- Open Graph / Social Media -->
-<meta property="og:title" content="SmartText - Free Online Text Utilities & Automation Tools">
-<meta property="og:description" content="Clean, format, and process text instantly in your browser. Fast, secure, and completely free online text processing suite.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://fengjianli2012-ship-it.github.io/my-tool/">
-
-<meta name="robots" content="index, follow">
-<meta name="theme-color" content="#0f172a">
-<link rel="canonical" href="https://fengjianli2012-ship-it.github.io/my-tool/">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%234f46e5'/%3E%3Cpath d='M18 18h28v6H24v7h19v6H24v9h22v6H18z' fill='white'/%3E%3C/svg%3E">
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebApplication",
-  "name": "SmartText Tools",
-  "url": "https://fengjianli2012-ship-it.github.io/my-tool/",
-  "applicationCategory": "UtilitiesApplication",
-  "operatingSystem": "Any",
-  "description": "Free browser-based tools for cleaning, counting, converting, and extracting text."
-}
-</script>
-
-<!-- Tailwind CSS CDN -->
-<script src="https://cdn.tailwindcss.com"></script>
-
-<!-- Font Awesome -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-<!-- Google Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-<style>
-* {
-    box-sizing: border-box;
-}
-
-body {
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
-    background-color: #0f172a;
-    color: #f8fafc;
-}
-
-.glass-panel {
-    background: rgba(30, 41, 59, 0.7);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.ad-placeholder {
-    background: rgba(15, 23, 42, 0.6);
-    border: 2px dashed rgba(99, 102, 241, 0.4);
-    transition: all 0.3s ease;
-}
-
-.ad-placeholder:hover {
-    border-color: rgba(99, 102, 241, 0.8);
-}
-
-#toast {
-    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.modal-backdrop {
-    background: rgba(15, 23, 42, 0.85);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-}
-
-button {
-    cursor: pointer;
-    touch-action: manipulation;
-}
-
-textarea {
-    line-height: 1.6;
-}
-
-/* Hide scrollbar for Chrome, Safari and Opera */
-.no-scrollbar::-webkit-scrollbar {
-    display: none;
-}
-/* Hide scrollbar for IE, Edge and Firefox */
-.no-scrollbar {
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
-}
-
-@media (max-width: 640px) {
-    .mobile-tabs {
-        overflow-x: auto;
-        flex-wrap: nowrap;
+    <html lang="en">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Optimized Web Title -->
+    <title>SmartText - Free Online Text Tools, Word Counter & Line Remover</title>
+    
+    <!-- Web Meta Description -->
+    <meta name="description" content="Free online text utilities for fast text processing. Easily count words, remove duplicate lines, convert case, extract phone numbers, and format text online. 100% free and privacy-focused.">
+    
+    <!-- Keywords -->
+    <meta name="keywords" content="text tools, online word counter, remove duplicate lines, case converter, free text processing, text formatter, character count, extract phone numbers">
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:title" content="SmartText - Free Online Text Utilities & Automation Tools">
+    <meta property="og:description" content="Clean, format, and process text instantly in your browser. Fast, secure, and completely free online text processing suite.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://fengjianli2012-ship-it.github.io/my-tool/">
+    
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#0f172a">
+    <link rel="canonical" href="https://fengjianli2012-ship-it.github.io/my-tool/">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%234f46e5'/%3E%3Cpath d='M18 18h28v6H24v7h19v6H24v9h22v6H18z' fill='white'/%3E%3C/svg%3E">
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "SmartText Tools",
+      "url": "https://fengjianli2012-ship-it.github.io/my-tool/",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "Any",
+      "description": "Free browser-based tools for cleaning, counting, converting, and extracting text."
     }
-}
-</style>
-</head>
-
-<body class="min-h-screen flex flex-col">
-
-<!-- Navigation -->
-<header class="sticky top-0 z-40 glass-panel border-b border-slate-800">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-    <div class="flex items-center space-x-3">
-      <div class="bg-indigo-600 p-2 rounded-xl text-white shadow-lg">
-        <i class="fa-solid fa-wand-magic-sparkles text-xl"></i>
+    </script>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+    * {
+        box-sizing: border-box;
+    }
+    
+    body {
+        font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        background-color: #0f172a;
+        color: #f8fafc;
+    }
+    
+    .glass-panel {
+        background: rgba(30, 41, 59, 0.7);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    
+    .ad-placeholder {
+        background: rgba(15, 23, 42, 0.6);
+        border: 2px dashed rgba(99, 102, 241, 0.4);
+        transition: all 0.3s ease;
+    }
+    
+    .ad-placeholder:hover {
+        border-color: rgba(99, 102, 241, 0.8);
+    }
+    
+    #toast {
+        transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    
+    .modal-backdrop {
+        background: rgba(15, 23, 42, 0.85);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+    }
+    
+    button {
+        cursor: pointer;
+        touch-action: manipulation;
+    }
+    
+    textarea {
+        line-height: 1.6;
+    }
+    
+    /* Hide scrollbar for clean UI */
+    .no-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+    .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+    
+    @media (max-width: 640px) {
+        .mobile-tabs {
+            overflow-x: auto;
+            flex-wrap: nowrap;
+            -webkit-overflow-scrolling: touch;
+            scroll-snap-type: x mandatory;
+        }
+        .mobile-tabs button {
+            scroll-snap-align: start;
+        }
+    }
+    </style>
+    </head>
+    
+    <body class="min-h-screen flex flex-col">
+    
+    <!-- Navigation -->
+    <header class="sticky top-0 z-40 glass-panel border-b border-slate-800">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+        <div class="flex items-center space-x-3">
+          <div class="bg-indigo-600 p-2 rounded-xl text-white shadow-lg">
+            <i class="fa-solid fa-wand-magic-sparkles text-xl"></i>
+          </div>
+          <div>
+            <span class="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-cyan-400">
+              SmartText
+            </span>
+            <span class="text-xs px-2 py-0.5 rounded-full bg-indigo-500/20 text-indigo-300 ml-2 border border-indigo-500/30">
+              v2.2 Pro
+            </span>
+          </div>
+        </div>
+    
+        <nav class="hidden md:flex space-x-8 text-sm font-medium text-slate-300">
+          <a href="#tools" class="hover:text-indigo-400 transition-colors">Core Features</a>
+          <a href="#" onclick="openModal('about-modal'); return false;" class="hover:text-indigo-400 transition-colors">About Us</a>
+          <a href="#" onclick="openModal('privacy-modal'); return false;" class="hover:text-indigo-400 transition-colors">Privacy Policy</a>
+        </nav>
+    
+        <button onclick="scrollToTools()" class="bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2 rounded-lg text-sm font-medium transition-all shadow-md active:scale-95">
+          Get Started
+        </button>
       </div>
-      <div>
-        <span class="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-cyan-400">
-          SmartText
-        </span>
-        <span class="text-xs px-2 py-0.5 rounded-full bg-indigo-500/20 text-indigo-300 ml-2 border border-indigo-500/30">
-          v2.0
-        </span>
-      </div>
-    </div>
-
-    <nav class="hidden md:flex space-x-8 text-sm font-medium text-slate-300">
-      <a href="#tools" class="hover:text-indigo-400 transition-colors">Core Features</a>
-      <a href="#" onclick="openModal('about-modal'); return false;" class="hover:text-indigo-400 transition-colors">About Us</a>
-      <a href="#" onclick="openModal('privacy-modal'); return false;" class="hover:text-indigo-400 transition-colors">Privacy Policy</a>
-    </nav>
-
-    <button onclick="scrollToTools()" class="bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2 rounded-lg text-sm font-medium transition-all shadow-md active:scale-95">
-      Get Started
-    </button>
-  </div>
-</header>
-
-<!-- Main Content -->
-<main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
-
-  <!-- Top Advertisement Placeholder -->
-  <div class="w-full flex justify-center">
-    <div class="ad-placeholder w-full max-w-[728px] h-[90px] rounded-xl flex flex-col items-center justify-center p-2 text-slate-400 text-xs">
-      <i class="fa-solid fa-rectangle-ad text-lg text-indigo-400 mb-1"></i>
-      <span>Advertisement Space</span>
-      <span class="text-[10px] text-slate-500">Top Banner</span>
-    </div>
-  </div>
-
-  <!-- Hero Section -->
-  <div class="text-center max-w-3xl mx-auto space-y-3">
-    <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-      Efficient Online
-      <span class="bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-cyan-400">
-        Text Processing Tools
-      </span>
-    </h1>
-    <p class="text-slate-400 text-sm sm:text-base">
-      Free online tools for cleaning text, analyzing characters, converting text formats, and extracting information.
-    </p>
-  </div>
-
-  <section class="max-w-4xl mx-auto text-center space-y-2" aria-labelledby="intro-heading">
-    <h2 id="intro-heading" class="text-xl font-semibold text-slate-200">Free Text Tools for Everyday Tasks</h2>
-    <p class="text-sm leading-6 text-slate-400">
-      SmartText helps you remove duplicate lines, clean whitespace, count text, change letter case,
-      and extract common items such as email addresses and URLs. All processing runs securely in your browser—no login required.
-    </p>
-  </section>
-
-  <!-- Main Tools Section -->
-  <div id="tools" class="grid grid-cols-1 lg:grid-cols-4 gap-8 scroll-mt-20">
-
-    <!-- Left Navigation Tabs -->
-    <div class="lg:col-span-1 space-y-2 flex lg:flex-col mobile-tabs no-scrollbar lg:overflow-visible pb-2">
-      <button onclick="switchTab('tab-dedupe')" id="btn-tab-dedupe" class="tab-btn active w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium text-sm text-left bg-indigo-600/20 text-indigo-300 border border-indigo-500/30 whitespace-nowrap transition-all">
-        <i class="fa-solid fa-filter text-indigo-400"></i>
-        <span>Clean & Deduplicate</span>
-      </button>
-
-      <button onclick="switchTab('tab-stats')" id="btn-tab-stats" class="tab-btn w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium text-sm text-left text-slate-400 hover:bg-slate-800/60 whitespace-nowrap transition-all">
-        <i class="fa-solid fa-chart-simple"></i>
-        <span>Word Count & Stats</span>
-      </button>
-
-      <button onclick="switchTab('tab-case')" id="btn-tab-case" class="tab-btn w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium text-sm text-left text-slate-400 hover:bg-slate-800/60 whitespace-nowrap transition-all">
-        <i class="fa-solid fa-font"></i>
-        <span>Format & Case Converter</span>
-      </button>
-
-      <button onclick="switchTab('tab-extract')" id="btn-tab-extract" class="tab-btn w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium text-sm text-left text-slate-400 hover:bg-slate-800/60 whitespace-nowrap transition-all">
-        <i class="fa-solid fa-bullseye"></i>
-        <span>Regex Info Extractor</span>
-      </button>
-
-      <!-- Sidebar Advertisement -->
-      <div class="hidden lg:block pt-4">
-        <div class="ad-placeholder w-full h-[250px] rounded-xl flex flex-col items-center justify-center p-4 text-slate-400 text-xs text-center">
-          <i class="fa-solid fa-rectangle-ad text-2xl text-indigo-400 mb-2"></i>
+    </header>
+    
+    <!-- Main Content -->
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+    
+      <!-- Top Banner Ad -->
+      <div class="w-full flex justify-center">
+        <div class="ad-placeholder w-full max-w-[728px] h-[90px] rounded-xl flex flex-col items-center justify-center p-2 text-slate-400 text-xs">
+          <i class="fa-solid fa-rectangle-ad text-lg text-indigo-400 mb-1"></i>
           <span>Advertisement Space</span>
-          <span class="text-[10px] text-slate-500 mt-1">300 × 250</span>
+          <span class="text-[10px] text-slate-500">Top Banner</span>
         </div>
       </div>
-    </div>
-
-    <!-- Right Workspace -->
-    <div class="lg:col-span-3 space-y-6">
-
-      <!-- Input Area -->
-      <div class="glass-panel p-5 rounded-2xl space-y-4">
-        <div class="flex justify-between items-center">
-          <label for="main-input" class="text-sm font-semibold text-slate-200 flex items-center">
-            <i class="fa-solid fa-pen-to-square text-indigo-400 mr-2"></i>
-            Source Text Input
-          </label>
-          <div class="flex space-x-2">
-            <button onclick="pasteFromClipboard()" class="text-xs bg-slate-800 hover:bg-slate-700 text-slate-300 px-3 py-1.5 rounded-lg border border-slate-700 transition-colors flex items-center">
-              <i class="fa-solid fa-paste mr-1"></i>Paste
-            </button>
-            <button onclick="clearAll()" class="text-xs bg-red-500/10 hover:bg-red-500/20 text-red-400 px-3 py-1.5 rounded-lg border border-red-500/20 transition-colors flex items-center">
-              <i class="fa-solid fa-trash-can mr-1"></i>Clear
-            </button>
-          </div>
-        </div>
-
-        <textarea
-          id="main-input"
-          rows="7"
-          oninput="processCurrentTool()"
-          placeholder="Paste or type text to be processed..."
-          class="w-full bg-slate-900/80 border border-slate-700/80 rounded-xl p-4 text-slate-200 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 text-sm font-mono resize-y transition-all"
-        ></textarea>
-      </div>
-
-      <!-- Tool Panel 1: Cleaning -->
-      <div id="tab-dedupe" class="tool-panel glass-panel p-5 rounded-2xl space-y-5">
-        <h3 class="text-lg font-bold text-white border-b border-slate-800 pb-3 flex items-center">
-          <i class="fa-solid fa-filter text-indigo-400 mr-2"></i>
-          Text Cleaning & Deduplication
-        </h3>
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          <button onclick="actionDedupeLines()" class="p-3 bg-slate-800/80 hover:bg-indigo-600/20 hover:border-indigo-500/50 border border-slate-700 rounded-xl text-sm text-slate-200 transition-all text-left">
-            Remove Duplicate Lines
-          </button>
-          <button onclick="actionRemoveEmptyLines()" class="p-3 bg-slate-800/80 hover:bg-indigo-600/20 hover:border-indigo-500/50 border border-slate-700 rounded-xl text-sm text-slate-200 transition-all text-left">
-            Remove Blank Lines
-          </button>
-          <button onclick="actionTrimWhitespace()" class="p-3 bg-slate-800/80 hover:bg-indigo-600/20 hover:border-indigo-500/50 border border-slate-700 rounded-xl text-sm text-slate-200 transition-all text-left">
-            Trim Extra Spaces
-          </button>
-          <button onclick="actionSortLines()" class="p-3 bg-slate-800/80 hover:bg-indigo-600/20 hover:border-indigo-500/50 border border-slate-700 rounded-xl text-sm text-slate-200 transition-all text-left">
-            Sort Lines Alphabetically
-          </button>
-        </div>
-      </div>
-
-      <!-- Tool Panel 2: Statistics -->
-      <div id="tab-stats" class="tool-panel hidden glass-panel p-5 rounded-2xl space-y-5">
-        <h3 class="text-lg font-bold text-white border-b border-slate-800 pb-3 flex items-center">
-          <i class="fa-solid fa-chart-simple text-indigo-400 mr-2"></i>
-          Text Statistics
-        </h3>
-        <div class="grid grid-cols-2 sm:grid-cols-5 gap-4">
-          <div class="bg-slate-900/60 p-4 rounded-xl border border-slate-800 text-center">
-            <div id="stat-total-chars" class="text-2xl font-bold text-indigo-400">0</div>
-            <div class="text-xs text-slate-400 mt-1">Total Characters</div>
-          </div>
-          <div class="bg-slate-900/60 p-4 rounded-xl border border-slate-800 text-center">
-            <div id="stat-no-space-chars" class="text-2xl font-bold text-cyan-400">0</div>
-            <div class="text-xs text-slate-400 mt-1">Chars (No Spaces)</div>
-          </div>
-          <div class="bg-slate-900/60 p-4 rounded-xl border border-slate-800 text-center">
-            <div id="stat-words" class="text-2xl font-bold text-violet-400">0</div>
-            <div class="text-xs text-slate-400 mt-1">Words</div>
-          </div>
-          <div class="bg-slate-900/60 p-4 rounded-xl border border-slate-800 text-center">
-            <div id="stat-lines" class="text-2xl font-bold text-emerald-400">0</div>
-            <div class="text-xs text-slate-400 mt-1">Lines</div>
-          </div>
-          <div class="bg-slate-900/60 p-4 rounded-xl border border-slate-800 text-center">
-            <div id="stat-read-time" class="text-2xl font-bold text-amber-400">0 min</div>
-            <div class="text-xs text-slate-400 mt-1">Est. Reading Time</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Tool Panel 3: Case Converter -->
-      <div id="tab-case" class="tool-panel hidden glass-panel p-5 rounded-2xl space-y-5">
-        <h3 class="text-lg font-bold text-white border-b border-slate-800 pb-3 flex items-center">
-          <i class="fa-solid fa-font text-indigo-400 mr-2"></i>
-          Text Case Converter
-        </h3>
-        <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
-          <button onclick="actionUpperCase()" class="p-3 bg-slate-800 hover:bg-indigo-600/20 border border-slate-700 rounded-xl text-sm transition-all">
-            UPPERCASE
-          </button>
-          <button onclick="actionLowerCase()" class="p-3 bg-slate-800 hover:bg-indigo-600/20 border border-slate-700 rounded-xl text-sm transition-all">
-            lowercase
-          </button>
-          <button onclick="actionTitleCase()" class="p-3 bg-slate-800 hover:bg-indigo-600/20 border border-slate-700 rounded-xl text-sm transition-all">
-            Title Case
-          </button>
-          <button onclick="actionSentenceCase()" class="p-3 bg-slate-800 hover:bg-indigo-600/20 border border-slate-700 rounded-xl text-sm transition-all">
-            Sentence case
-          </button>
-          <button onclick="actionCamelCase()" class="p-3 bg-slate-800 hover:bg-indigo-600/20 border border-slate-700 rounded-xl text-sm transition-all">
-            camelCase
-          </button>
-          <button onclick="actionSnakeCase()" class="p-3 bg-slate-800 hover:bg-indigo-600/20 border border-slate-700 rounded-xl text-sm transition-all">
-            snake_case
-          </button>
-        </div>
-      </div>
-
-      <!-- Tool Panel 4: Extractor -->
-      <div id="tab-extract" class="tool-panel hidden glass-panel p-5 rounded-2xl space-y-5">
-        <h3 class="text-lg font-bold text-white border-b border-slate-800 pb-3 flex items-center">
-          <i class="fa-solid fa-bullseye text-indigo-400 mr-2"></i>
-          Information Extractor
-        </h3>
-        <p class="text-sm text-slate-400">
-          Extract common information from your input text.
+    
+      <!-- Hero Section -->
+      <div class="text-center max-w-3xl mx-auto space-y-3">
+        <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+          Efficient Online
+          <span class="bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-cyan-400">
+            Text Processing Tools
+          </span>
+        </h1>
+        <p class="text-slate-400 text-sm sm:text-base">
+          Free online tools for cleaning text, analyzing characters, converting text formats, and extracting information.
         </p>
-        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
-          <button onclick="actionExtractPhones()" class="p-3 bg-slate-800 hover:bg-indigo-600/20 border border-slate-700 rounded-xl text-sm transition-all flex items-center justify-center">
-            <i class="fa-solid fa-phone mr-1.5 text-indigo-400"></i> Phones
-          </button>
-          <button onclick="actionExtractEmails()" class="p-3 bg-slate-800 hover:bg-indigo-600/20 border border-slate-700 rounded-xl text-sm transition-all flex items-center justify-center">
-            <i class="fa-solid fa-envelope mr-1.5 text-indigo-400"></i> Emails
-          </button>
-          <button onclick="actionExtractURLs()" class="p-3 bg-slate-800 hover:bg-indigo-600/20 border border-slate-700 rounded-xl text-sm transition-all flex items-center justify-center">
-            <i class="fa-solid fa-link mr-1.5 text-indigo-400"></i> URLs
-          </button>
-          <button onclick="actionExtractNumbers()" class="p-3 bg-slate-800 hover:bg-indigo-600/20 border border-slate-700 rounded-xl text-sm transition-all flex items-center justify-center">
-            <i class="fa-solid fa-hashtag mr-1.5 text-indigo-400"></i> Numbers
-          </button>
-        </div>
       </div>
-
-      <!-- Output Area -->
-      <div class="glass-panel p-5 rounded-2xl space-y-4">
-        <div class="flex justify-between items-center flex-wrap gap-2">
-          <label for="main-output" class="text-sm font-semibold text-slate-200 flex items-center">
-            <i class="fa-solid fa-file-export text-cyan-400 mr-2"></i>
-            Processed Output
-          </label>
-          <div class="flex gap-2">
-            <button onclick="copyOutput()" class="text-xs bg-indigo-600 hover:bg-indigo-500 text-white px-3 py-2 rounded-lg transition-all flex items-center shadow-md active:scale-95">
-              <i class="fa-solid fa-copy mr-1"></i> Copy Output
-            </button>
-            <button onclick="downloadOutput()" class="text-xs bg-slate-800 hover:bg-slate-700 text-slate-300 px-3 py-2 rounded-lg border border-slate-700 transition-all flex items-center">
-              <i class="fa-solid fa-download mr-1"></i> Download
+    
+      <section class="max-w-4xl mx-auto text-center space-y-2" aria-labelledby="intro-heading">
+        <h2 id="intro-heading" class="text-xl font-semibold text-slate-200">Free Text Tools for Everyday Tasks</h2>
+        <p class="text-sm leading-6 text-slate-400">
+          SmartText helps you remove duplicate lines, clean whitespace, count text, change letter case,
+          and extract common items such as email addresses and URLs. All processing runs securely in your browser—no login required.
+        </p>
+      </section>
+    
+      <!-- Tools Workspace -->
+      <div id="tools" class="grid grid-cols-1 lg:grid-cols-4 gap-8 scroll-mt-20">
+    
+        <!-- Left Navigation Tabs -->
+        <div class="lg:col-span-1 space-y-2 flex lg:flex-col mobile-tabs no-scrollbar lg:overflow-visible pb-2">
+          <button onclick="switchTab('tab-dedupe')" id="btn-tab-dedupe" class="tab-btn active w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium text-sm text-left bg-indigo-600/20 text-indigo-300 border border-indigo-500/30 whitespace-nowrap transition-all">
+            <i class="fa-solid fa-filter text-indigo-400"></i>
+            <span>Clean & Deduplicate</span>
+          </button>
+    
+          <button onclick="switchTab('tab-stats')" id="btn-tab-stats" class="tab-btn w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium text-sm text-left text-slate-400 hover:bg-slate-800/60 whitespace-nowrap transition-all">
+            <i class="fa-solid fa-chart-simple"></i>
+            <span>Word Count & Stats</span>
+          </button>
+    
+          <button onclick="switchTab('tab-case')" id="btn-tab-case" class="tab-btn w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium text-sm text-left text-slate-400 hover:bg-slate-800/60 whitespace-nowrap transition-all">
+            <i class="fa-solid fa-font"></i>
+            <span>Format & Case Converter</span>
+          </button>
+    
+          <button onclick="switchTab('tab-extract')" id="btn-tab-extract" class="tab-btn w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium text-sm text-left text-slate-400 hover:bg-slate-800/60 whitespace-nowrap transition-all">
+            <i class="fa-solid fa-bullseye"></i>
+            <span>Regex Info Extractor</span>
+          </button>
+    
+          <!-- Sidebar Ad -->
+          <div class="hidden lg:block pt-4">
+            <div class="ad-placeholder w-full h-[250px] rounded-xl flex flex-col items-center justify-center p-4 text-slate-400 text-xs text-center">
+              <i class="fa-solid fa-rectangle-ad text-2xl text-indigo-400 mb-2"></i>
+              <span>Advertisement Space</span>
+              <span class="text-[10px] text-slate-500 mt-1">300 × 250</span>
+            </div>
+          </div>
+        </div>
+    
+        <!-- Right Workspace -->
+        <div class="lg:col-span-3 space-y-6">
+    
+          <!-- Input Box -->
+          <div class="glass-panel p-5 rounded-2xl space-y-4">
+            <div class="flex justify-between items-center">
+              <label for="main-input" class="text-sm font-semibold text-slate-200 flex items-center">
+                <i class="fa-solid fa-pen-to-square text-indigo-400 mr-2"></i>
+                Source Text Input
+              </label>
+              <div class="flex space-x-2">
+                <button onclick="pasteFromClipboard()" class="text-xs bg-slate-800 hover:bg-slate-700 text-slate-300 px-3 py-1.5 rounded-lg border border-slate-700 transition-colors flex items-center">
+                  <i class="fa-solid fa-paste mr-1"></i>Paste
+                </button>
+                <button onclick="clearAll()" class="text-xs bg-red-500/10 hover:bg-red-500/20 text-red-400 px-3 py-1.5 rounded-lg border border-red-500/20 transition-colors flex items-center">
+                  <i class="fa-solid fa-trash-can mr-1"></i>Clear
+                </button>
+              </div>
+            </div>
+    
+            <textarea
+              id="main-input"
+              rows="7"
+              oninput="processCurrentTool()"
+              placeholder="Paste or type text to be processed..."
+              class="w-full bg-slate-900/80 border border-slate-700/80 rounded-xl p-4 text-slate-200 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 text-sm font-mono resize-y transition-all"
+            ></textarea>
+          </div>
+    
+          <!-- Tool Panel 1: Dedupe -->
+          <div id="tab-dedupe" class="tool-panel glass-panel p-5 rounded-2xl space-y-5">
+            <h3 class="text-lg font-bold text-white border-b border-slate-800 pb-3 flex items-center">
+              <i class="fa-solid fa-filter text-indigo-400 mr-2"></i>
+              Text Cleaning & Deduplication
+            </h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <button onclick="actionDedupeLines()" class="p-3 bg-slate-800/80 hover:bg-indigo-600/20 hover:border-indigo-500/50 border border-slate-700 rounded-xl text-sm text-slate-200 transition-all text-left">
+                Remove Duplicate Lines
+              </button>
+              <button onclick="actionRemoveEmptyLines()" class="p-3 bg-slate-800/80 hover:bg-indigo-600/20 hover:border-indigo-500/50 border border-slate-700 rounded-xl text-sm text-slate-200 transition-all text-left">
+                Remove Blank Lines
+              </button>
+              <button onclick="actionTrimWhitespace()" class="p-3 bg-slate-800/80 hover:bg-indigo-600/20 hover:border-indigo-500/50 border border-slate-700 rounded-xl text-sm text-slate-200 transition-all text-left">
+                Trim Extra Spaces
+              </button>
+              <button onclick="actionSortLines()" class="p-3 bg-slate-800/80 hover:bg-indigo-600/20 hover:border-indigo-500/50 border border-slate-700 rounded-xl text-sm text-slate-200 transition-all text-left">
+                Sort Lines Alphabetically
+              </button>
+            </div>
+          </div>
+    
+          <!-- Tool Panel 2: Statistics -->
+          <div id="tab-stats" class="tool-panel hidden glass-panel p-5 rounded-2xl space-y-5">
+            <h3 class="text-lg font-bold text-white border-b border-slate-800 pb-3 flex items-center">
+              <i class="fa-solid fa-chart-simple text-indigo-400 mr-2"></i>
+              Text Statistics
+            </h3>
+            <div class="grid grid-cols-2 sm:grid-cols-5 gap-4">
+              <div class="bg-slate-900/60 p-4 rounded-xl border border-slate-800 text-center">
+                <div id="stat-total-chars" class="text-2xl font-bold text-indigo-400">0</div>
+                <div class="text-xs text-slate-400 mt-1">Total Characters</div>
+              </div>
+              <div class="bg-slate-900/60 p-4 rounded-xl border border-slate-800 text-center">
+                <div id="stat-no-space-chars" class="text-2xl font-bold text-cyan-400">0</div>
+                <div class="text-xs text-slate-400 mt-1">Chars (No Spaces)</div>
+              </div>
+              <div class="bg-slate-900/60 p-4 rounded-xl border border-slate-800 text-center">
+                <div id="stat-words" class="text-2xl font-bold text-violet-400">0</div>
+                <div class="text-xs text-slate-400 mt-1">Words</div>
+              </div>
+              <div class="bg-slate-900/60 p-4 rounded-xl border border-slate-800 text-center">
+                <div id="stat-lines" class="text-2xl font-bold text-emerald-400">0</div>
+                <div class="text-xs text-slate-400 mt-1">Lines</div>
+              </div>
+              <div class="bg-slate-900/60 p-4 rounded-xl border border-slate-800 text-center">
+                <div id="stat-read-time" class="text-2xl font-bold text-amber-400">0 min</div>
+                <div class="text-xs text-slate-400 mt-1">Est. Reading Time</div>
+              </div>
+            </div>
+          </div>
+    
+          <!-- Tool Panel 3: Case Converter -->
+          <div id="tab-case" class="tool-panel hidden glass-panel p-5 rounded-2xl space-y-5">
+            <h3 class="text-lg font-bold text-white border-b border-slate-800 pb-3 flex items-center">
+              <i class="fa-solid fa-font text-indigo-400 mr-2"></i>
+              Text Case Converter
+            </h3>
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+              <button onclick="actionUpperCase()" class="p-3 bg-slate-800 hover:bg-indigo-600/20 border border-slate-700 rounded-xl text-sm transition-all">
+                UPPERCASE
+              </button>
+              <button onclick="actionLowerCase()" class="p-3 bg-slate-800 hover:bg-indigo-600/20 border border-slate-700 rounded-xl text-sm transition-all">
+                lowercase
+              </button>
+              <button onclick="actionTitleCase()" class="p-3 bg-slate-800 hover:bg-indigo-600/20 border border-slate-700 rounded-xl text-sm transition-all">
+                Title Case
+              </button>
+              <button onclick="actionSentenceCase()" class="p-3 bg-slate-800 hover:bg-indigo-600/20 border border-slate-700 rounded-xl text-sm transition-all">
+                Sentence case
+              </button>
+              <button onclick="actionCamelCase()" class="p-3 bg-slate-800 hover:bg-indigo-600/20 border border-slate-700 rounded-xl text-sm transition-all">
+                camelCase
+              </button>
+              <button onclick="actionSnakeCase()" class="p-3 bg-slate-800 hover:bg-indigo-600/20 border border-slate-700 rounded-xl text-sm transition-all">
+                snake_case
+              </button>
+            </div>
+          </div>
+    
+          <!-- Tool Panel 4: Extractor -->
+          <div id="tab-extract" class="tool-panel hidden glass-panel p-5 rounded-2xl space-y-5">
+            <h3 class="text-lg font-bold text-white border-b border-slate-800 pb-3 flex items-center">
+              <i class="fa-solid fa-bullseye text-indigo-400 mr-2"></i>
+              Information Extractor
+            </h3>
+            <p class="text-sm text-slate-400">
+              Extract common patterns from your source text into line-separated outputs.
+            </p>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+              <button onclick="actionExtractPhones()" class="p-3 bg-slate-800 hover:bg-indigo-600/20 border border-slate-700 rounded-xl text-sm transition-all flex items-center justify-center">
+                <i class="fa-solid fa-phone mr-1.5 text-indigo-400"></i> Phones
+              </button>
+              <button onclick="actionExtractEmails()" class="p-3 bg-slate-800 hover:bg-indigo-600/20 border border-slate-700 rounded-xl text-sm transition-all flex items-center justify-center">
+                <i class="fa-solid fa-envelope mr-1.5 text-indigo-400"></i> Emails
+              </button>
+              <button onclick="actionExtractURLs()" class="p-3 bg-slate-800 hover:bg-indigo-600/20 border border-slate-700 rounded-xl text-sm transition-all flex items-center justify-center">
+                <i class="fa-solid fa-link mr-1.5 text-indigo-400"></i> URLs
+              </button>
+              <button onclick="actionExtractNumbers()" class="p-3 bg-slate-800 hover:bg-indigo-600/20 border border-slate-700 rounded-xl text-sm transition-all flex items-center justify-center">
+                <i class="fa-solid fa-hashtag mr-1.5 text-indigo-400"></i> Numbers
+              </button>
+            </div>
+          </div>
+    
+          <!-- Output Area -->
+          <div class="glass-panel p-5 rounded-2xl space-y-4">
+            <div class="flex justify-between items-center flex-wrap gap-2">
+              <label for="main-output" class="text-sm font-semibold text-slate-200 flex items-center">
+                <i class="fa-solid fa-file-export text-cyan-400 mr-2"></i>
+                Processed Output
+              </label>
+              <div class="flex gap-2">
+                <button onclick="copyOutput()" class="text-xs bg-indigo-600 hover:bg-indigo-500 text-white px-3 py-2 rounded-lg transition-all flex items-center shadow-md active:scale-95">
+                  <i class="fa-solid fa-copy mr-1"></i> Copy Output
+                </button>
+                <button onclick="downloadOutput()" class="text-xs bg-slate-800 hover:bg-slate-700 text-slate-300 px-3 py-2 rounded-lg border border-slate-700 transition-all flex items-center">
+                  <i class="fa-solid fa-download mr-1"></i> Download
             </button>
           </div>
         </div>
@@ -373,9 +377,9 @@ textarea {
           <span id="output-count">0 characters</span>
           <span>SmartText Tools</span>
         </div>
-      </div>
+          </div>
 
-      <!-- Bottom Advertisement -->
+        <!-- Bottom Banner Ad -->
       <div class="w-full flex justify-center">
         <div class="ad-placeholder w-full max-w-[728px] h-[90px] rounded-xl flex flex-col items-center justify-center p-2 text-slate-400 text-xs">
           <i class="fa-solid fa-rectangle-ad text-lg text-indigo-400 mb-1"></i>
@@ -398,7 +402,7 @@ textarea {
       </div>
       <div class="flex flex-wrap justify-center gap-5 text-sm text-slate-400">
         <a href="#" onclick="openModal('about-modal'); return false;" class="hover:text-indigo-400 transition-colors">About</a>
-<a href="#" onclick="openModal('privacy-modal'); return false;" class="hover:text-indigo-400 transition-colors">Privacy Policy</a>
+        <a href="#" onclick="openModal('privacy-modal'); return false;" class="hover:text-indigo-400 transition-colors">Privacy Policy</a>
         <a href="#" onclick="openModal('terms-modal'); return false;" class="hover:text-indigo-400 transition-colors">Terms of Service</a>
       </div>
     </div>
@@ -416,8 +420,7 @@ textarea {
       <button onclick="closeModal('about-modal')" class="text-slate-400 hover:text-white text-xl">&times;</button>
     </div>
     <p class="text-sm text-slate-300 leading-7">
-      SmartText Tools is a collection of online text processing utilities designed to help users clean, analyze, convert and extract information from text.
-      Our goal is to provide simple, privacy-first, and convenient tools for everyday text processing tasks.
+      SmartText Tools is a suite of lightweight client-side text utilities. It performs operations directly in your browser without transmitting data to remote servers.
     </p>
     <button onclick="closeModal('about-modal')" class="bg-indigo-600 hover:bg-indigo-500 px-4 py-2 rounded-lg text-sm text-white">Close</button>
   </div>
@@ -430,10 +433,8 @@ textarea {
       <button onclick="closeModal('privacy-modal')" class="text-slate-400 hover:text-white text-xl">&times;</button>
     </div>
     <div class="text-sm text-slate-300 leading-7 space-y-3">
-      <p><strong>1. Client-Side Processing</strong></p>
-      <p>Text entered into these tools is processed completely inside your browser using standard JavaScript. Your text input is never uploaded or saved to remote servers.</p>
-      <p><strong>2. Personal Data</strong></p>
-      <p>We do not collect personal information, user profiles, or tracking credentials for tool usage.</p>
+      <p><strong>1. Privacy First</strong></p>
+      <p>All text processing occurs in-browser. No input data is sent to external servers.</p>
     </div>
     <button onclick="closeModal('privacy-modal')" class="bg-indigo-600 hover:bg-indigo-500 px-4 py-2 rounded-lg text-sm text-white">Close</button>
   </div>
@@ -446,27 +447,32 @@ textarea {
       <button onclick="closeModal('terms-modal')" class="text-slate-400 hover:text-white text-xl">&times;</button>
     </div>
     <div class="text-sm text-slate-300 leading-7 space-y-3">
-      <p><strong>1. Usage</strong></p>
-      <p>You may use these utilities freely for personal or commercial text transformation tasks.</p>
+      <p>Provided "as is" without warranty of any kind.</p>
     </div>
     <button onclick="closeModal('terms-modal')" class="bg-indigo-600 hover:bg-indigo-500 px-4 py-2 rounded-lg text-sm text-white">Close</button>
   </div>
 </div>
 
-<!-- Toast Notification -->
+<!-- Toast Container -->
 <div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 translate-y-20 opacity-0 z-[100] bg-indigo-600 text-white px-5 py-3 rounded-xl shadow-2xl text-sm font-medium pointer-events-none flex items-center">
-  <i class="fa-solid fa-circle-check mr-2"></i>
+  <i id="toast-icon" class="fa-solid fa-circle-check mr-2"></i>
   <span id="toast-message">Success!</span>
 </div>
 
-<!-- JavaScript Logic -->
 <script>
-// Elements
 const mainInput = document.getElementById('main-input');
 const mainOutput = document.getElementById('main-output');
 
 function getInput() {
     return mainInput.value;
+}
+
+function ensureInputNotEmpty() {
+    if (!mainInput.value.trim()) {
+        showToast('Please enter text first!', true);
+        return false;
+    }
+    return true;
 }
 
 function setOutput(text) {
@@ -479,12 +485,23 @@ function updateOutputCount() {
     document.getElementById('output-count').textContent = count.toLocaleString() + ' characters';
 }
 
-// Toast
+// Toast System
 let toastTimer;
-function showToast(message) {
+function showToast(message, isWarning = false) {
     const toast = document.getElementById('toast');
     const toastMessage = document.getElementById('toast-message');
+    const toastIcon = document.getElementById('toast-icon');
+
     toastMessage.textContent = message;
+    if (isWarning) {
+        toast.classList.remove('bg-indigo-600');
+        toast.classList.add('bg-amber-600');
+        toastIcon.className = 'fa-solid fa-triangle-exclamation mr-2';
+    } else {
+        toast.classList.remove('bg-amber-600');
+        toast.classList.add('bg-indigo-600');
+        toastIcon.className = 'fa-solid fa-circle-check mr-2';
+    }
 
     toast.classList.remove('translate-y-20', 'opacity-0');
     toast.classList.add('translate-y-0', 'opacity-100');
@@ -496,13 +513,12 @@ function showToast(message) {
     }, 2500);
 }
 
-// Tab Switching
+// Tabs
 function switchTab(tabId) {
     const panels = document.querySelectorAll('.tool-panel');
     const buttons = document.querySelectorAll('.tab-btn');
 
     panels.forEach(panel => panel.classList.add('hidden'));
-
     buttons.forEach(button => {
         button.classList.remove('bg-indigo-600/20', 'text-indigo-300', 'border', 'border-indigo-500/30');
         button.classList.add('text-slate-400');
@@ -526,7 +542,7 @@ function scrollToTools() {
     document.getElementById('tools').scrollIntoView({ behavior: 'smooth' });
 }
 
-// Word Count & Stats
+// Multi-language Aware Word Counter
 function countWords(text) {
     if (!text.trim()) return 0;
     if (typeof Intl !== 'undefined' && typeof Intl.Segmenter === 'function') {
@@ -543,13 +559,25 @@ function countWords(text) {
     return matches ? matches.length : 0;
 }
 
+// Improved Reading Time Calculation
+function calculateReadingTime(text, wordCount) {
+    if (!text.trim() || wordCount === 0) return 0;
+    const cjkMatches = text.match(/[\p{Script=Han}\p{Script=Hiragana}\p{Script=Katakana}\p{Script=Hangul}]/gu);
+    const cjkCount = cjkMatches ? cjkMatches.length : 0;
+    const nonCjkWords = Math.max(0, wordCount - cjkCount);
+
+    // CJK characters ~400 cpm; Western words ~200 wpm
+    const minutes = (cjkCount / 400) + (nonCjkWords / 200);
+    return Math.max(1, Math.ceil(minutes));
+}
+
 function updateStats() {
     const text = getInput();
     const totalChars = Array.from(text).length;
     const noSpaceChars = Array.from(text.replace(/\s/g, '')).length;
     const words = countWords(text);
     const lines = text.length === 0 ? 0 : text.split(/\r\n|\r|\n/).length;
-    const readTime = words === 0 ? 0 : Math.max(1, Math.ceil(words / 200));
+    const readTime = calculateReadingTime(text, words);
 
     document.getElementById('stat-total-chars').textContent = totalChars.toLocaleString();
     document.getElementById('stat-no-space-chars').textContent = noSpaceChars.toLocaleString();
@@ -562,8 +590,9 @@ function processCurrentTool() {
     updateStats();
 }
 
-// Cleaning Actions
+// Text Cleaning Actions
 function actionDedupeLines() {
+    if (!ensureInputNotEmpty()) return;
     const lines = getInput().split(/\r\n|\r|\n/);
     const seen = new Set();
     const result = lines.filter(line => {
@@ -573,10 +602,11 @@ function actionDedupeLines() {
         return true;
     });
     setOutput(result.join('\n'));
-    showToast('Duplicate lines removed!');
+    showToast(`Deduplicated: ${lines.length - result.length} line(s) removed.`);
 }
 
 function actionRemoveEmptyLines() {
+    if (!ensureInputNotEmpty()) return;
     const result = getInput()
         .split(/\r\n|\r|\n/)
         .filter(line => line.trim() !== '');
@@ -585,15 +615,17 @@ function actionRemoveEmptyLines() {
 }
 
 function actionTrimWhitespace() {
+    if (!ensureInputNotEmpty()) return;
     const result = getInput()
         .split(/\r\n|\r|\n/)
         .map(line => line.trim().replace(/[ \t]+/g, ' '))
         .filter(line => line.length > 0);
     setOutput(result.join('\n'));
-    showToast('Extra spaces & empty lines trimmed!');
+    showToast('Extra spaces & blank lines trimmed!');
 }
 
 function actionSortLines() {
+    if (!ensureInputNotEmpty()) return;
     const result = getInput()
         .split(/\r\n|\r|\n/)
         .sort((a, b) => a.localeCompare(b));
@@ -603,25 +635,29 @@ function actionSortLines() {
 
 // Case Conversion Actions
 function actionUpperCase() {
+    if (!ensureInputNotEmpty()) return;
     setOutput(getInput().toUpperCase());
     showToast('Converted to UPPERCASE!');
 }
 
 function actionLowerCase() {
+    if (!ensureInputNotEmpty()) return;
     setOutput(getInput().toLowerCase());
     showToast('Converted to lowercase!');
 }
 
 function actionTitleCase() {
+    if (!ensureInputNotEmpty()) return;
     const result = getInput().toLowerCase().replace(/\b[a-z]/g, char => char.toUpperCase());
     setOutput(result);
     showToast('Converted to Title Case!');
 }
 
 function actionSentenceCase() {
+    if (!ensureInputNotEmpty()) return;
     const result = getInput()
         .toLowerCase()
-        .replace(/(^|[.!?。！？]+\s*)([\p{L}])/gu, (match, boundary, letter) =>
+        .replace(/(^\s*|[.!?。！？]\s*|\n\s*)([\p{L}])/gu, (match, boundary, letter) =>
             boundary + letter.toLocaleUpperCase()
         );
     setOutput(result);
@@ -629,6 +665,7 @@ function actionSentenceCase() {
 }
 
 function actionCamelCase() {
+    if (!ensureInputNotEmpty()) return;
     const words = getInput().trim().split(/[\s_-]+/).filter(Boolean);
     const result = words.map((word, index) => {
         const lower = word.toLowerCase();
@@ -639,6 +676,7 @@ function actionCamelCase() {
 }
 
 function actionSnakeCase() {
+    if (!ensureInputNotEmpty()) return;
     const result = getInput()
         .trim()
         .replace(/([a-z0-9])([A-Z])/g, '$1_$2')
@@ -650,41 +688,50 @@ function actionSnakeCase() {
     showToast('Converted to snake_case!');
 }
 
-// Information Extraction Actions
+// Extraction Actions
 function actionExtractPhones() {
-    const regex = /(?:\+?\d{1,3}[\s.-]?)?(?:\(?\d{2,4}\)?[\s.-]?)?\d{3,4}[\s.-]?\d{4}/g;
-    const matches = getInput().match(regex) || [];
-    setOutput(matches.join('\n'));
-    showToast(`Extracted ${matches.length} phone numbers!`);
+    if (!ensureInputNotEmpty()) return;
+    // Enhanced regex matching CN mobile, intl format (+XX) and US formats while filtering false positives
+    const regex = /(?:\+?\d{1,3}[\s.-]?)?\(?\d{2,4}\)?[\s.-]?\d{3,4}[\s.-]?\d{3,4}/g;
+    const rawMatches = getInput().match(regex) || [];
+    const matches = rawMatches.filter(item => {
+        const digits = item.replace(/\D/g, '');
+        return digits.length >= 7 && digits.length <= 15;
+    });
+    setOutput([...new Set(matches)].join('\n'));
+    showToast(`Extracted ${matches.length} phone number(s)!`);
 }
 
 function actionExtractEmails() {
+    if (!ensureInputNotEmpty()) return;
     const regex = /[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/g;
     const matches = getInput().match(regex) || [];
-    setOutput(matches.join('\n'));
-    showToast(`Extracted ${matches.length} email addresses!`);
+    setOutput([...new Set(matches)].join('\n'));
+    showToast(`Extracted ${matches.length} email(s)!`);
 }
 
 function actionExtractURLs() {
+    if (!ensureInputNotEmpty()) return;
     const regex = /https?:\/\/[^\s<>"']+/gi;
     const matches = getInput().match(regex) || [];
     const cleaned = matches.map(url => url.replace(/[),.;!?]+$/, ''));
-    setOutput(cleaned.join('\n'));
-    showToast(`Extracted ${cleaned.length} URLs!`);
+    setOutput([...new Set(cleaned)].join('\n'));
+    showToast(`Extracted ${cleaned.length} URL(s)!`);
 }
 
 function actionExtractNumbers() {
+    if (!ensureInputNotEmpty()) return;
     const regex = /-?\d+(?:\.\d+)?/g;
     const matches = getInput().match(regex) || [];
     setOutput(matches.join('\n'));
-    showToast(`Extracted ${matches.length} numbers!`);
+    showToast(`Extracted ${matches.length} number(s)!`);
 }
 
 // Copy & Paste Utilities
 async function copyOutput() {
     const text = mainOutput.value;
     if (!text) {
-        showToast('There is no output to copy!');
+        showToast('There is no output to copy!', true);
         return;
     }
     try {
@@ -700,7 +747,7 @@ async function copyOutput() {
         let success = false;
         try { success = document.execCommand('copy'); } catch (e) {}
         temp.remove();
-        showToast(success ? 'Copied to clipboard!' : 'Copy unavailable. Please select & copy manually.');
+        showToast(success ? 'Copied to clipboard!' : 'Copy unavailable. Select manually.', !success);
     }
 }
 
@@ -712,15 +759,14 @@ async function pasteFromClipboard() {
         showToast('Text pasted successfully!');
     } catch (error) {
         mainInput.focus();
-        showToast('Clipboard access denied. Please use Ctrl+V / Cmd+V to paste.');
+        showToast('Clipboard access denied. Press Ctrl+V / Cmd+V.', true);
     }
 }
 
-// Download Action
 function downloadOutput() {
     const text = mainOutput.value;
     if (!text) {
-        showToast('There is no output to download!');
+        showToast('There is no output to download!', true);
         return;
     }
     const blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
@@ -743,7 +789,7 @@ function clearAll() {
     showToast('All text cleared!');
 }
 
-// Modal Controls
+// Modals
 function openModal(modalId) {
     const modal = document.getElementById(modalId);
     if (modal) {
@@ -779,4 +825,4 @@ switchTab('tab-dedupe');
 </script>
 
 </body>
-</html>
+    </html>
